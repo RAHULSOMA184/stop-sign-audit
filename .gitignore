@@ -1,0 +1,23 @@
+
+# Google API keys and credentials
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Company Excel files
+*.xlsx
+*.xls
+*.csv
+
+# Python environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Local OSM source files
+*.osm.pbf
+
+# IDE files
+.vscode/
+.idea/
