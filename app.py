@@ -14,7 +14,7 @@ load_dotenv(ROOT / '.env')
 ox.settings.use_cache = True
 ox.settings.cache_folder = str(ROOT / 'cache')
 ox.settings.requests_timeout = 35
-st.set_page_config(page_title='STOP Sign Batch Audit V3.5',layout='wide')
+st.set_page_config(page_title='STOP Sign Detection',layout='wide',initial_sidebar_state='collapsed')
 @st.cache_data(ttl=86400, show_spinner=False)
 def geocode(address, key):
     r=requests.get('https://maps.googleapis.com/maps/api/geocode/json',params={'address':address,'key':key},timeout=25);r.raise_for_status()
@@ -402,7 +402,7 @@ if upload:
     try:
         data=read_input(upload)
         st.write(f'{len(data)} valid intersection rows found')
-        st.dataframe(data.head(15),hide_index=True,width=True)
+        st.dataframe(data.head(15),hide_index=True,width=stretch)
     except Exception as exc:
         st.error(str(exc));data=None
 else:data=None
@@ -440,9 +440,9 @@ if st.button('Run batch',type='primary',disabled=(data is None or not key or not
 if 'last_summary' in st.session_state:
     summaries=st.session_state['last_summary'];approaches=st.session_state['last_approaches']
     st.subheader('Intersection results')
-    st.dataframe(pd.DataFrame(summaries),width=True,hide_index=True)
+    st.dataframe(pd.DataFrame(summaries),width=stretch,hide_index=True)
     st.subheader('Approach results')
-    st.dataframe(pd.DataFrame(approaches),width=True,hide_index=True)
+    st.dataframe(pd.DataFrame(approaches),width=stretch,hide_index=True)
     st.subheader('Visual evidence & human verification')
     st.caption('Expand an intersection and approach to inspect Street View frames with YOLO boxes. Photos are retained only in this Streamlit session, not exported to Excel or saved to disk. Rerunning the batch replaces them.')
     evidence_by=st.session_state.get('last_evidence',{})
