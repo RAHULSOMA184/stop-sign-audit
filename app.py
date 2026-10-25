@@ -402,7 +402,7 @@ if upload:
     try:
         data=read_input(upload)
         st.write(f'{len(data)} valid intersection rows found')
-        st.dataframe(data.head(15),hide_index=True,width=stretch)
+        st.dataframe(data.head(15),hide_index=True,width='stretch')
     except Exception as exc:
         st.error(str(exc));data=None
 else:data=None
@@ -440,9 +440,9 @@ if st.button('Run batch',type='primary',disabled=(data is None or not key or not
 if 'last_summary' in st.session_state:
     summaries=st.session_state['last_summary'];approaches=st.session_state['last_approaches']
     st.subheader('Intersection results')
-    st.dataframe(pd.DataFrame(summaries),width=stretch,hide_index=True)
+    st.dataframe(pd.DataFrame(summaries),width='stretch',hide_index=True)
     st.subheader('Approach results')
-    st.dataframe(pd.DataFrame(approaches),width=stretch,hide_index=True)
+    st.dataframe(pd.DataFrame(approaches),width='stretch',hide_index=True)
     st.subheader('Visual evidence & human verification')
     st.caption('Expand an intersection and approach to inspect Street View frames with YOLO boxes. Photos are retained only in this Streamlit session, not exported to Excel or saved to disk. Rerunning the batch replaces them.')
     evidence_by=st.session_state.get('last_evidence',{})
