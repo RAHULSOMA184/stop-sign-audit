@@ -378,7 +378,7 @@ def export_book(summaries,approaches):
             {'note':'Google Street View content usage is subject to Google Maps Platform terms.'}]).to_excel(writer,sheet_name='Read me',index=False)
     return buf.getvalue()
 
-st.title('STOP Sign Batch Audit — V3.2 (Visual Review)')
+st.title('STOP Sign Audit')
 st.caption('Upload intersections → road-aligned approaches → adaptive Street View → YOLO → Excel')
 st.warning('AI results are screening findings, not proof of current traffic-control inventory. Inspect sign orientation and flagged imagery before relying on results.')
 key=st.text_input('Google Maps API key',value=os.getenv('GOOGLE_MAPS_API_KEY',''),type='password')
